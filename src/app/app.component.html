@@ -1,0 +1,29 @@
+<div class="formmh">
+  <form (submit)="invioDati()">
+    <div>
+      <input type="text" placeholder="Search images" [formControl]="query" name="query">
+    </div>
+    <div>
+      <select [formControl]="color">
+        <option [ngValue]="null" disabled>Select color</option>
+        <option *ngFor="let i of colors" [ngValue]="i.v">{{i.l}}</option>
+      </select>
+    </div>
+    <div>
+      <select [formControl]="orientation">
+        <option [ngValue]="null" disabled>Select orientation</option>
+        <option *ngFor="let i of orientations" [ngValue]="i.v">{{i.l}}</option>
+      </select>
+    </div>
+    <div>
+      <input type="submit" value="Search" [disabled]="!color.value || !orientation.value || !query.value">
+    </div>
+  </form>
+</div>
+
+<div class="box_for_container">
+  <div class="pic_container">
+    <a *ngFor="let i of arrayPhoto" [href]="i.urls.raw" target="_blank"><img [src]="i.urls.thumb"></a>
+    {{arrayError}}
+  </div>
+</div>
